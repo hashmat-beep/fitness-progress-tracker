@@ -53,8 +53,6 @@ java -jar target/fittrack-1.0-SNAPSHOT.jar
 # Go to:
 http://localhost:4567
 
-<img width="1701" height="983" alt="image" src="https://github.com/user-attachments/assets/bfbb9a27-cbec-4e1e-a4d4-ea3748c4286c" />
-
 
 
 
