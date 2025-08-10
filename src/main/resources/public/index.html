@@ -1,0 +1,60 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <title>Fitness Progress Tracker</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="stylesheet" href="./styles.css">
+</head>
+<body>
+  <header>
+    <h1>Fitness Progress Tracker</h1>
+  </header>
+
+  <main>
+    <section class="card">
+      <h2>Add Workout</h2>
+      <form id="workout-form">
+        <div class="grid">
+          <label>Date
+            <input type="date" id="date" required>
+          </label>
+          <label>Exercise
+            <input type="text" id="exercise" placeholder="Bench Press / Running" required>
+          </label>
+          <label>Sets (one per line: reps,weight)
+            <textarea id="sets" rows="4" placeholder="e.g. 5,135&#10;5,135&#10;5,135"></textarea>
+          </label>
+          <label>Duration (min, for cardio)
+            <input type="number" id="duration" min="0" placeholder="e.g. 30">
+          </label>
+        </div>
+        <button type="submit">Save Workout</button>
+      </form>
+      <p class="hint">Tip: For strength, fill Sets (lines like <code>5,135</code>). For cardio, leave Sets empty and enter Duration.</p>
+    </section>
+
+    <section class="card">
+      <h2>Dashboard</h2>
+      <div class="stats">
+        <div class="stat"><div class="label">7-Day Volume</div><div id="weekly" class="value">0</div></div>
+        <div class="stat"><div class="label">30-Day Volume</div><div id="monthly" class="value">0</div></div>
+      </div>
+      <h3>Volume Over Time</h3>
+      <svg id="chart" width="700" height="220" role="img" aria-label="Volume chart"></svg>
+      <div id="bests" class="bests"></div>
+      <a class="btn" href="/api/export">Export CSV</a>
+    </section>
+
+    <section class="card">
+      <h2>Recent Workouts</h2>
+      <table id="table">
+        <thead><tr><th>Date</th><th>Exercise</th><th>Details</th></tr></thead>
+        <tbody></tbody>
+      </table>
+    </section>
+  </main>
+
+  <script src="./app.js"></script>
+</body>
+</html>

@@ -1,0 +1,17 @@
+[
+  {
+    "date": "2025-08-09",
+    "exercise": "bench press",
+    "sets": [
+      {
+        "reps": 5,
+        "weight": 135.0
+      },
+      {
+        "reps": 6,
+        "weight": 164.0
+      }
+    ],
+    "duration": 10
+  }
+]

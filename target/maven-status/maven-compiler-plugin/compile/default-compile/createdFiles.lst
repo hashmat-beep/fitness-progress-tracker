@@ -1,0 +1,8 @@
+model/Workout.class
+service/StatsService$StatsResult.class
+service/StatsService$Daily.class
+service/StatsService.class
+model/SetEntry.class
+app/App.class
+store/FileStore.class
+store/FileStore$1.class
