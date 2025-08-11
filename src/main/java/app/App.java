@@ -6,25 +6,20 @@ import model.SetEntry;
 import model.Workout;
 import service.StatsService;
 import store.FileStore;
-import spark.Filter;
-import spark.Request;
-import spark.Response;
-
-import java.util.ArrayList;
-import java.util.List;
 
 import static spark.Spark.*;
 
 public class App {
     public static void main(String[] args) {
-        port(4567);
+        port(getHerokuAssignedPort()); // Dynamically pick the port from environment
+
         staticFiles.location("/public"); // src/main/resources/public
 
         Gson gson = new GsonBuilder().setPrettyPrinting().create();
         FileStore store = new FileStore("data/workouts.json");
         StatsService statsService = new StatsService();
 
-        // Simple CORS for local dev (static + API are same origin, but harmless)
+        // Disable caching
         before((request, response) -> response.header("Cache-Control", "no-cache"));
 
         get("/api/workouts", (req, res) -> {
@@ -65,7 +60,6 @@ public class App {
                           .append(vol).append('\n');
                     }
                 } else {
-                    // cardio line with duration (volume blank)
                     sb.append(w.date).append(',')
                       .append(escape(w.exercise)).append(',')
                       .append("").append(',')
@@ -75,6 +69,11 @@ public class App {
             }
             return sb.toString();
         });
+    }
+
+    private static int getHerokuAssignedPort() {
+        String port = System.getenv("PORT");
+        return port != null ? Integer.parseInt(port) : 4567;
     }
 
     private static String validate(Workout w) {
@@ -95,6 +94,6 @@ public class App {
 
     private static String escape(String s) {
         if (s == null) return "";
-        return s.replace("\"","\"\"");
+        return s.replace("\"", "\"\"");
     }
 }
